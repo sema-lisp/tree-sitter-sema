@@ -4,11 +4,28 @@
   "word": "symbol",
   "rules": {
     "source_file": {
-      "type": "REPEAT",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_form"
-      }
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "shebang"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_form"
+          }
+        }
+      ]
     },
     "_form": {
       "type": "CHOICE",
@@ -16,6 +33,10 @@
         {
           "type": "SYMBOL",
           "name": "list"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "short_lambda"
         },
         {
           "type": "SYMBOL",
@@ -40,6 +61,10 @@
         {
           "type": "SYMBOL",
           "name": "unquote_splicing"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "deref"
         },
         {
           "type": "SYMBOL",
@@ -101,6 +126,26 @@
               "value": ")"
             }
           ]
+        }
+      ]
+    },
+    "short_lambda": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_form"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -196,6 +241,19 @@
         }
       ]
     },
+    "deref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_form"
+        }
+      ]
+    },
     "byte_vector": {
       "type": "SEQ",
       "members": [
@@ -226,6 +284,10 @@
         {
           "type": "SYMBOL",
           "name": "string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "regex"
         },
         {
           "type": "SYMBOL",
@@ -291,65 +353,24 @@
       }
     },
     "string": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "\""
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "escape_sequence"
-              },
-              {
-                "type": "PATTERN",
-                "value": "[^\"\\\\]+"
-              }
-            ]
-          }
-        },
-        {
-          "type": "STRING",
-          "value": "\""
-        }
-      ]
-    },
-    "escape_sequence": {
-      "type": "IMMEDIATE_TOKEN",
+      "type": "TOKEN",
       "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "\\"
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "[ntr\\\\\"0]"
-              },
-              {
-                "type": "PATTERN",
-                "value": "x[0-9a-fA-F]+;"
-              },
-              {
-                "type": "PATTERN",
-                "value": "u[0-9a-fA-F]{4}"
-              },
-              {
-                "type": "PATTERN",
-                "value": "U[0-9a-fA-F]{8}"
-              }
-            ]
-          }
-        ]
+        "type": "PATTERN",
+        "value": "\"([^\"\\\\]|\\\\.)*\""
+      }
+    },
+    "regex": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#\"([^\"\\\\]|\\\\.)*\""
+      }
+    },
+    "shebang": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#![^\\r\\n]*"
       }
     },
     "symbol": {

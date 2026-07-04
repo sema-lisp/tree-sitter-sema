@@ -15,12 +15,12 @@
     }
   },
   {
-    "type": "hash_map",
+    "type": "deref",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
           "type": "boolean",
@@ -32,6 +32,10 @@
         },
         {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "deref",
           "named": true
         },
         {
@@ -56,6 +60,93 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splicing",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "hash_map",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "byte_vector",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quasiquote",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -102,6 +193,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -123,6 +218,14 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -169,6 +272,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -190,6 +297,14 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -236,6 +351,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -257,6 +376,93 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        },
+        {
+          "type": "unquote",
+          "named": true
+        },
+        {
+          "type": "unquote_splicing",
+          "named": true
+        },
+        {
+          "type": "vector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "short_lambda",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "boolean",
+          "named": true
+        },
+        {
+          "type": "byte_vector",
+          "named": true
+        },
+        {
+          "type": "character",
+          "named": true
+        },
+        {
+          "type": "deref",
+          "named": true
+        },
+        {
+          "type": "hash_map",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "list",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "quasiquote",
+          "named": true
+        },
+        {
+          "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -304,6 +510,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -325,6 +535,18 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "shebang",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -351,21 +573,6 @@
     }
   },
   {
-    "type": "string",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "escape_sequence",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "unquote",
     "named": true,
     "fields": {},
@@ -383,6 +590,10 @@
         },
         {
           "type": "character",
+          "named": true
+        },
+        {
+          "type": "deref",
           "named": true
         },
         {
@@ -407,6 +618,14 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -453,6 +672,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -474,6 +697,14 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -520,6 +751,10 @@
           "named": true
         },
         {
+          "type": "deref",
+          "named": true
+        },
+        {
           "type": "hash_map",
           "named": true
         },
@@ -541,6 +776,14 @@
         },
         {
           "type": "quote",
+          "named": true
+        },
+        {
+          "type": "regex",
+          "named": true
+        },
+        {
+          "type": "short_lambda",
           "named": true
         },
         {
@@ -567,7 +810,7 @@
     }
   },
   {
-    "type": "\"",
+    "type": "#(",
     "named": false
   },
   {
@@ -599,6 +842,10 @@
     "named": false
   },
   {
+    "type": "@",
+    "named": false
+  },
+  {
     "type": "[",
     "named": false
   },
@@ -627,15 +874,23 @@
     "named": true
   },
   {
-    "type": "escape_sequence",
-    "named": true
-  },
-  {
     "type": "keyword",
     "named": true
   },
   {
     "type": "number",
+    "named": true
+  },
+  {
+    "type": "regex",
+    "named": true
+  },
+  {
+    "type": "shebang",
+    "named": true
+  },
+  {
+    "type": "string",
     "named": true
   },
   {

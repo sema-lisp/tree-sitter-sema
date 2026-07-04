@@ -27,16 +27,23 @@ module.exports = grammar({
   word: $ => $.symbol,
 
   rules: {
-    source_file: $ => repeat($._form),
+    // A shebang (`#!/usr/bin/env sema`) is valid only as the first line of a
+    // file, so it is an optional leading child rather than a general form.
+    source_file: $ => seq(
+      optional($.shebang),
+      repeat($._form),
+    ),
 
     _form: $ => choice(
       $.list,
+      $.short_lambda,
       $.vector,
       $.hash_map,
       $.quote,
       $.quasiquote,
       $.unquote,
       $.unquote_splicing,
+      $.deref,
       $.byte_vector,
       $._atom,
     ),
@@ -48,6 +55,10 @@ module.exports = grammar({
       // Dotted pair: (a b . c)
       seq('(', repeat1($._form), '.', $._form, ')'),
     ),
+
+    // Short lambda: #(...) — a `#(`-opened form whose body may reference the
+    // implicit placeholder args %, %1..%9, %& (all lexed as ordinary symbols).
+    short_lambda: $ => seq('#(', repeat($._form), ')'),
 
     vector: $ => seq('[', repeat($._form), ']'),
 
@@ -63,6 +74,10 @@ module.exports = grammar({
 
     unquote_splicing: $ => seq(',@', $._form),
 
+    // Deref reader macro: @expr → (deref expr) ───────────────────────
+
+    deref: $ => seq('@', $._form),
+
     // ── Byte vector: #u8( num* ) ────────────────────────────────────
 
     byte_vector: $ => seq('#u8(', repeat($.number), ')'),
@@ -72,6 +87,7 @@ module.exports = grammar({
     _atom: $ => choice(
       $.number,
       $.string,
+      $.regex,
       $.symbol,
       $.keyword,
       $.boolean,
@@ -92,24 +108,21 @@ module.exports = grammar({
 
     // Strings with escape sequences ──────────────────────────────────
 
-    string: $ => seq(
-      '"',
-      repeat(choice(
-        $.escape_sequence,
-        /[^"\\]+/,
-      )),
-      '"',
-    ),
+    // A string is a single token, mirroring the reader (one Token::String).
+    // Making it one token is also what keeps a `;` in the body (e.g. "a;b")
+    // from being lexed as a line comment that swallows the closing quote —
+    // `extras` can never be injected inside a single token. The only escape
+    // that matters for delimiting is `\"`; every other `\x` is content (the
+    // reader preserves unknown escapes literally).
+    string: _$ => token(/"([^"\\]|\\.)*"/),
 
-    escape_sequence: _$ => token.immediate(seq(
-      '\\',
-      choice(
-        /[ntr\\"0]/,          // \n \t \r \\ \" \0
-        /x[0-9a-fA-F]+;/,    // \xHH;  (R7RS hex escape)
-        /u[0-9a-fA-F]{4}/,   // \uHHHH
-        /U[0-9a-fA-F]{8}/,   // \UHHHHHHHH
-      ),
-    )),
+    // Regex literal: #"pattern" ──────────────────────────────────────
+    // A raw string where the only recognized escape is \" (which does NOT
+    // terminate the literal); every other backslash is literal (e.g. \d).
+    regex: _$ => token(/#"([^"\\]|\\.)*"/),
+
+    // Shebang: #!... — first line of a file only (enforced via source_file)
+    shebang: _$ => token(/#![^\r\n]*/),
 
     // Symbols ────────────────────────────────────────────────────────
     // Must not match "true", "false", or a bare "." (those are
