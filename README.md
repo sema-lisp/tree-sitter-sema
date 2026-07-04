@@ -1,6 +1,16 @@
+<div align="center">
+
+<img src="https://sema-lang.com/logo.svg" alt="Sema" height="64">
+
 # tree-sitter-sema
 
-Tree-sitter grammar for [Sema](https://sema-lang.com), a Lisp with LLM primitives.
+**[Sema](https://sema-lang.com) tree-sitter grammar** — a Lisp with first-class LLM primitives.
+
+[![CI](https://img.shields.io/github/actions/workflow/status/sema-lisp/tree-sitter-sema/ci.yml?branch=main&label=CI&logo=github)](https://github.com/sema-lisp/tree-sitter-sema/actions)
+[![License](https://img.shields.io/github/license/sema-lisp/tree-sitter-sema?color=c8a855)](LICENSE)
+[![Website](https://img.shields.io/badge/website-sema--lang.com-c8a855)](https://sema-lang.com)
+
+</div>
 
 This is the canonical home for the grammar. Editor integrations (Zed, Helix, Neovim) consume it by pinning a tagged commit; the generated `src/` (parser + scanner) is committed so consumers compile it directly without running `tree-sitter generate`.
 
@@ -57,10 +67,12 @@ Releases are tagged (`vX.Y.Z`); consumers pin a specific tag rather than trackin
 
 ## Links
 
-- [Sema Language](https://sema-lang.com)
-- [Sema Repository](https://github.com/HelgeSverre/sema)
-- [Playground](https://sema.run)
+- **Website** — [sema-lang.com](https://sema-lang.com)
+- **Playground** — [sema.run](https://sema.run)
+- **Documentation** — [sema-lang.com/docs](https://sema-lang.com/docs/)
+- **Consumers** — [zed-sema](https://github.com/sema-lisp/zed-sema) · [helix-sema](https://github.com/sema-lisp/helix-sema) · [sema.nvim](https://github.com/sema-lisp/sema.nvim)
+- **Repository** — [sema-lisp/tree-sitter-sema](https://github.com/sema-lisp/tree-sitter-sema)
 
 ## License
 
-MIT
+[MIT](LICENSE) © [Helge Sverre](https://github.com/HelgeSverre)
