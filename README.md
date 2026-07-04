@@ -38,6 +38,22 @@ The grammar produces the following node types:
 - `quasiquote` — `` `expr ``
 - `unquote` — `,expr`
 - `unquote_splicing` — `,@expr`
+- `short_lambda` — anonymous-function shorthand `#(...)`
+- `regex` — regex literals `#"..."`
+- `deref` — dereference `@expr`
+- `shebang` — leading `#!...` line
+
+## Consumers
+
+Editor integrations pin a tagged commit of this grammar:
+
+- [zed-sema](https://github.com/sema-lisp/zed-sema) — Zed extension
+- [helix-sema](https://github.com/sema-lisp/helix-sema) — Helix language support
+- [sema.nvim](https://github.com/sema-lisp/sema.nvim) — Neovim plugin
+
+## Releases
+
+Releases are tagged (`vX.Y.Z`); consumers pin a specific tag rather than tracking `main`. Current release: **v0.2.0**.
 
 ## Links
 
