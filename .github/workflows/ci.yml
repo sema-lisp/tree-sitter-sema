@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  grammar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+      - name: Install tree-sitter CLI
+        run: npm install -g tree-sitter-cli@0.24.7   # matches package.json devDependency
+      - name: Regenerate and verify committed src/ is in sync
+        run: |
+          tree-sitter generate
+          git diff --exit-code src/ \
+            || { echo "::error::src/ is stale — run 'tree-sitter generate' and commit"; exit 1; }
+      - name: Corpus tests
+        run: tree-sitter test

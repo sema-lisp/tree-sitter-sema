@@ -5,7 +5,9 @@
       "camelcase": "Sema",
       "scope": "source.sema",
       "path": ".",
-      "file-types": ["sema"],
+      "file-types": [
+        "sema"
+      ],
       "highlights": "queries/highlights.scm",
       "injection-regex": "^sema$"
     }
@@ -20,7 +22,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/HelgeSverre/tree-sitter-sema"
+      "repository": "https://github.com/sema-lisp/tree-sitter-sema"
     }
   },
   "bindings": {

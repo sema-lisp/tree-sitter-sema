@@ -2,12 +2,20 @@
 
 Tree-sitter grammar for [Sema](https://sema-lang.com), a Lisp with LLM primitives.
 
-> **Note:** This package is auto-published as a read-only mirror from the main [Sema monorepo](https://github.com/HelgeSverre/sema).
+This is the canonical home for the grammar. Editor integrations (Zed, Helix, Neovim) consume it by pinning a tagged commit; the generated `src/` (parser + scanner) is committed so consumers compile it directly without running `tree-sitter generate`.
 
 ## Usage
 
 ```sh
 tree-sitter generate && tree-sitter test
+```
+
+Editing `grammar.js` requires regenerating and committing `src/`:
+
+```sh
+npm install
+tree-sitter generate    # updates src/parser.c etc.
+tree-sitter test
 ```
 
 ## Node Types
@@ -35,6 +43,7 @@ The grammar produces the following node types:
 
 - [Sema Language](https://sema-lang.com)
 - [Sema Repository](https://github.com/HelgeSverre/sema)
+- [Playground](https://sema.run)
 
 ## License
 
