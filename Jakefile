@@ -8,7 +8,7 @@
 @group grammar
 @desc "Install tree-sitter dependencies"
 task setup:
-    @command -v npm >/dev/null || { echo "npm not found — install Node.js" >&2; exit 1; }
+    @needs npm
     npm install
 
 # File recipe: regenerate the parser only when the grammar changes.
