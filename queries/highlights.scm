@@ -96,6 +96,10 @@
 ; (deftool name ...)
 (list . (symbol) @_f . (symbol) @function (#eq? @_f "deftool"))
 
+; (defworkflow name ...) / (defpolicy name ...)
+(list . (symbol) @_f . (symbol) @function
+  (#any-of? @_f "defworkflow" "defpolicy"))
+
 ; =====================================================================
 ; PARAMETERS
 ; =====================================================================
@@ -140,7 +144,7 @@
     "embedding/->list" "embedding/length"
     "embedding/list->embedding" "embedding/ref"
     ; Tool query functions
-    "tool/name" "tool/description" "tool/parameters"
+    "tool/name" "tool/description" "tool/parameters" "tool/policy-subjects"
     ; I/O
     "display" "print" "println" "newline" "format"
     "read" "read-line" "read-many"
@@ -250,6 +254,14 @@
     "sys/arch" "sys/elapsed" "sys/home-dir" "sys/hostname"
     "sys/interactive?" "sys/os" "sys/pid" "sys/temp-dir"
     "sys/tty" "sys/user" "sys/which"
+    ; Workflow and policy forms
+    "approval" "checkpoint" "parallel" "parallel-settled" "phase"
+    "pipeline" "pipeline-settled" "policy/without" "settled-partition"
+    "settled/err?" "settled/ok?" "step"
+    "workflow/approval" "workflow/check" "workflow/checkpoint"
+    "workflow/phase" "workflow/policy-without" "workflow/run"
+    "workflow/run-form" "workflow/step" "workflow/tool-call"
+    "workflow/tool-result"
     ; Misc
     "not" "error" "gensym"))
 
@@ -290,5 +302,6 @@
     "and" "or"
     "quote" "quasiquote" "unquote" "unquote-splicing"
     "define-record-type" "defmacro" "defagent" "deftool"
+    "defworkflow" "defpolicy"
     "delay" "force" "eval" "macroexpand"
     "with-budget" "prompt" "message"))
