@@ -1,0 +1,14 @@
+================================================================================
+Unicode alphabetic symbols and keywords
+================================================================================
+
+(define π 3.14)
+(defn 日本語 (λ) λ)
+(:имя {:имя "name"})
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (list (symbol) (symbol) (number))
+  (list (symbol) (symbol) (list (symbol)) (symbol))
+  (list (keyword) (hash_map (keyword) (string))))
