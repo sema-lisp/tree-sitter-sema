@@ -12,7 +12,9 @@ const prelude = fs.readFileSync(path.join(source, 'crates/sema-eval/src/prelude.
 const symbol = /^[\p{Alphabetic}+\-*/!?<>=_&%^~.][\p{Alphabetic}+\-*/!?<>=_&%^~.#0-9]*$/u;
 const macros = [...prelude.matchAll(/^\(defmacro ([^\s()]+)/gm)].map(match => match[1]).filter(name => !name.startsWith('__'));
 const constants = ['pi', 'e', '*stdin*', '*stdout*', '*stderr*'];
-const names = [...new Set(entries.map(entry => entry.name))].filter(name => symbol.test(name) && !constants.includes(name));
+// Bound runtime aliases and builtins omitted from the documentation index.
+const runtimeAliases = ["caddr", "char->integer", "char->string", "char-alphabetic?", "char-downcase", "char-numeric?", "char-upcase", "char-upper-case?", "char-whitespace?", "i64-array/fold", "i64-array/length", "i64-array/map", "i64-array/ref", "i64-array/set!", "i64-array/sum", "i64-array?", "integer->char", "keyword->string", "path/basename", "path/dirname", "path/ext", "stream/writable?", "string->char", "string->keyword", "string->list", "string->symbol", "string->utf8", "string-append", "string-length", "string-ref", "substring", "symbol->string", "time/now-ms", "utf8->string"];
+const names = [...new Set([...entries.map(entry => entry.name), ...runtimeAliases])].filter(name => symbol.test(name) && !constants.includes(name));
 const rows = values => [...new Set(values)].sort().map(name => `    ${JSON.stringify(name)}`).join('\n');
 const begin = '; BEGIN GENERATED BUILTINS';
 const end = '; END GENERATED BUILTINS';
