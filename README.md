@@ -39,11 +39,10 @@ The grammar produces the following node types:
 - `keyword` — colon-prefixed keywords `:foo`
 - `number` — integer and floating-point literals
 - `string` — double-quoted string literals
-- `boolean` — `#t` and `#f`
+- `boolean` — `#t`, `#f`, `#true`, `#false`, `true`, and `false`
 - `character` — character literals `#\a`
 - `byte_vector` — byte vector literals `#u8(...)`
 - `comment` — line comments `;`
-- `block_comment` — block comments `#| ... |#`
 - `quote` — `'expr`
 - `quasiquote` — `` `expr ``
 - `unquote` — `,expr`
