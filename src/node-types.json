@@ -858,10 +858,6 @@
     "named": false
   },
   {
-    "type": "block_comment",
-    "named": true
-  },
-  {
     "type": "boolean",
     "named": true
   },

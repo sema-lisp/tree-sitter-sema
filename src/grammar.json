@@ -404,6 +404,14 @@
           "members": [
             {
               "type": "STRING",
+              "value": "#true"
+            },
+            {
+              "type": "STRING",
+              "value": "#false"
+            },
+            {
+              "type": "STRING",
               "value": "#t"
             },
             {
@@ -488,20 +496,11 @@
     {
       "type": "SYMBOL",
       "name": "comment"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "block_comment"
     }
   ],
   "conflicts": [],
   "precedences": [],
-  "externals": [
-    {
-      "type": "SYMBOL",
-      "name": "block_comment"
-    }
-  ],
+  "externals": [],
   "inline": [],
   "supertypes": []
 }

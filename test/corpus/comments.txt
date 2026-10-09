@@ -7,7 +7,9 @@ Line comment before code
 
 --------------------------------------------------------------------------------
 
-(source_file (comment) (number))
+(source_file
+  (comment)
+  (number))
 
 ================================================================================
 Line comment after code
@@ -17,7 +19,9 @@ Line comment after code
 
 --------------------------------------------------------------------------------
 
-(source_file (number) (comment))
+(source_file
+  (number)
+  (comment))
 
 ================================================================================
 Multiple line comments
@@ -29,27 +33,30 @@ Multiple line comments
 
 --------------------------------------------------------------------------------
 
-(source_file (comment) (comment) (number))
+(source_file
+  (comment)
+  (comment)
+  (number))
 
 ================================================================================
-Block comment before code
+Unsupported block comment before code
 ================================================================================
 
 #| block comment |# 42
 
 --------------------------------------------------------------------------------
 
-(source_file (block_comment) (number))
+(source_file (ERROR (UNEXPECTED '|')) (symbol) (symbol) (ERROR (UNEXPECTED '|')) (number))
 
 ================================================================================
-Block comment between expressions
+Unsupported block comment between expressions
 ================================================================================
 
 1 #| comment |# 2
 
 --------------------------------------------------------------------------------
 
-(source_file (number) (block_comment) (number))
+(source_file (number) (ERROR (UNEXPECTED '|')) (symbol) (ERROR (UNEXPECTED '|')) (number))
 
 ================================================================================
 Comment inside list
@@ -60,4 +67,8 @@ Comment inside list
 
 --------------------------------------------------------------------------------
 
-(source_file (list (symbol) (comment) (symbol)))
+(source_file
+  (list
+    (symbol)
+    (comment)
+    (symbol)))

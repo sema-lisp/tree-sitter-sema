@@ -21,14 +21,9 @@ const PREFIXED_RADIX_INTEGER = /(?:(?:#[eEiI]#[xX]|#[xX]#[eEiI]|#[xX])[+-]?[0-9a
 module.exports = grammar({
   name: 'sema',
 
-  externals: $ => [
-    $.block_comment,
-  ],
-
   extras: $ => [
     /\s/,
     $.comment,
-    $.block_comment,
   ],
 
   word: $ => $.symbol,
@@ -142,7 +137,7 @@ module.exports = grammar({
 
     // Booleans ───────────────────────────────────────────────────────
 
-    boolean: _$ => token(prec(1, choice('#t', '#f', 'true', 'false'))),
+    boolean: _$ => token(prec(1, choice('#true', '#false', '#t', '#f', 'true', 'false'))),
 
     // Character literals ─────────────────────────────────────────────
     // #\a  #\space  #\newline  #\tab  #\return  #\nul
